@@ -23,3 +23,33 @@
 * On `LOG_DIV` boundary, ISR writes a `Sample` struct (t_us, current_A, filtered_A, pwmCmd, encCount, rpm) into `latestSample` and sets `logReady`
 * `loop()` polls `logReady`, prints CSV over Serial - keeps all `Serial.print` out of the ISR
 * `START` / `STOP` serial commands toggle `isRunning`, gating the ISR and motor drive
+
+## User Manaual 
+Step by step guide to implement this project on hardware
+Hardware used : Arduino UNO R4 Wifi, Cytron MDD10A, HW872 / ACS712, Quadrature Hall effect encoder, Planetary geared DC motor 
+
+### Softwares Used
+- MATLAB and SIMULINK for simulations; along with control systems library
+- Arduino IDE for flashing and programming the arduino uno
+- Jupyter notebook for `.ipynb` files
+- VS code for `.py` files and for result plots
+
+### Libraries used 
+- FspTimer - [Github](https://github.com/embedded-kiddie/CallbackTimerR4)
+- Pwm - [Github](https://github.com/terryjmyers/PWM)
+- TinyEKF - [Github](https://github.com/simondlevy/TinyEKF.git)
+
+### Usage 
+1. First, ensure the connections are correct and steady
+2. Verify the pins used in code and hardware before flashing
+3. Then select the file which is to be run on the hardware
+4. Ensure that necessary libraries are installed
+5. `Upload` the files on Arudino
+6. Use the Serial Monitor set at `115200` baud rate to obtain the Serial Logs.
+
+### Data Plots 
+1. Copy the serial log and create a `.csv` file
+2. Rename the file and keep in the same directory as of the `<example>_plot.py` (Plot `,py` files in `SubmissionDCL/Hardware Implementation Fig9,10,11/Fig10 Resources`
+3. This will plot the results and also keep in mind about the column name in the plots.
+
+To check if the code has is working correctly, press the `RESET` button on Arduino and this will print the `offSet` voltage of the current sensor on serial monitor.
